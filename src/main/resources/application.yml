@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.132.174.159:3306/demo?characterEncoding=utf8&useSSL=false
+    username: root
+    password: aliyun-qihui
+    filters: stat,wall
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 30
+      test-on-borrow: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      web-stat-filter:
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      stat-view-servlet:
+        allow:
+        login-username: admin
+        login-password: admin
+
+mybatis:
+  type-aliases-package: com.qihui.sourcedemo.model
+  mapper-locations: classpath:mapper/*.xml
+
+mapper:
+  mappers:
+  - com.qihui.sourcedemo.mapper.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+logging:
+  level:
+    org.springframework.web: debug
+    com.qihui: debug
