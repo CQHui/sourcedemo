@@ -1,6 +1,7 @@
 package com.qihui.sourcedemo.transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.TransactionStatus;
@@ -11,6 +12,7 @@ import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
  * @date 2019/4/11
  */
 @Component
+@Scope(value = "prototype")
 public class TransactionUtil {
 
     @Autowired
