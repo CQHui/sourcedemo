@@ -1,8 +1,9 @@
-package com.qihui.sourcedemo.transaction;
+package com.qihui.sourcedemo.service.impl;
 
 import com.qihui.sourcedemo.mapper.UserMapper;
 import com.qihui.sourcedemo.model.SysUser;
 import com.qihui.sourcedemo.service.SysUserService;
+import com.qihui.sourcedemo.transaction.CustomTransaction;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,7 +13,7 @@ import javax.annotation.Resource;
  * @date 2019/4/11
  */
 @Service
-public class SysUserServiceTransactionImpl implements SysUserService {
+public class SysUserServiceImpl implements SysUserService {
 
     @Resource
     private UserMapper userMapper;
