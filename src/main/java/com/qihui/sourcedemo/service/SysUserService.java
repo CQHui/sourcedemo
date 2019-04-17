@@ -6,4 +6,6 @@ package com.qihui.sourcedemo.service;
  */
 public interface SysUserService {
     void saveUser();
+
+    void userOrder();
 }
