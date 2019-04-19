@@ -1,7 +1,6 @@
 package com.qihui.sourcedemo.inversion;
 
 import com.qihui.sourcedemo.service.SysUserService;
-import com.qihui.sourcedemo.service.impl.SysUserServiceImpl;
 import com.qihui.sourcedemo.util.ClassUtil;
 import org.springframework.util.StringUtils;
 
@@ -114,17 +113,12 @@ public class AnnotationApplicationContext {
             // 初始化对象
             Object newInstance = classInfo.newInstance();
             // 获取父类名称
-            String beanId = toLowerCaseFirstOne(classInfo.getSimpleName());
+            String beanId = ClassUtil.toLowerCaseFirstOne(classInfo.getSimpleName());
             concurrentHashMap.put(beanId, newInstance);
         }
         return concurrentHashMap;
     }
 
-
-    // 首字母转小写
-    public static String toLowerCaseFirstOne(String s) {
-        return Character.isLowerCase(s.charAt(0)) ? s : String.valueOf(Character.toLowerCase(s.charAt(0))) + s.substring(1);
-    }
 
 
 

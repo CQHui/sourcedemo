@@ -189,4 +189,15 @@ public class ClassUtil {
 			}
 		}
 	}
+
+	// 首字母转小写
+	public static String toLowerCaseFirstOne(String s) {
+		return Character.isLowerCase(s.charAt(0)) ? s : String.valueOf(Character.toLowerCase(s.charAt(0))) + s.substring(1);
+	}
+
+	// 初始化对象
+	public static Object newInstance(Class<?> classInfo)
+			throws InstantiationException, IllegalAccessException {
+		return classInfo.newInstance();
+	}
 }
