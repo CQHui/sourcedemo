@@ -6,10 +6,12 @@ import com.qihui.sourcedemo.util.ClassUtil;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -59,23 +61,44 @@ public class ExtDispatcherServlet extends HttpServlet {
         }
         Object object = mvcBeanUrl.get(requestURI);
         if (object == null) {
-            resp.getWriter().println("404 not found");
+            resp.getWriter().println("404 not found url");
+            return;
         }
         String methodName = mvcMethodUrl.get(requestURI);
         if (StringUtils.isEmpty(methodName)) {
-            resp.getWriter().println("not found method");
+            resp.getWriter().println("404 not found method");
+            return;
         }
 
         String result = (String) methodInvoke(object, methodName);
 //        resp.getWriter().println(result);
         extResourceViewResolver(result, req, resp);
     }
-
-
-    private void extResourceViewResolver(String pageName, HttpServletRequest req, HttpServletResponse resp) {
-        String prefix = "/statics";
+    private void extResourceViewResolver(String pageName, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String prefix = "/static/";
         String suffix = ".html";
-        req.getRequestDispatcher(prefix + pageName + suffix);
+        ServletOutputStream os = resp.getOutputStream();
+
+        writerFile(os, prefix + pageName + suffix);
+
+//        req.getRequestDispatcher(prefix + pageName + suffix).forward(req, resp);
+    }
+
+    public void writerFile(ServletOutputStream os, String path)throws  IOException {
+        FileInputStream fis = new FileInputStream(this.getClass().getResource(path).getPath());
+        byte[] buff = new byte[1024];
+        int len = 0;
+
+        StringBuffer sb =  new StringBuffer();
+
+        //响应头信息写出去
+        os.write(sb.toString().getBytes());
+        while ((len=fis.read(buff))!= -1) {
+            os.write(buff,0,len);
+        }
+        fis.close();
+        os.flush();
+        os.close();
     }
 
     public Object methodInvoke(Object object, String methodName) {
