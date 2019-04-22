@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Data
 public class SysUser implements Serializable {
-    private static final long serialVersionUID = -7357983568966973518L;
+//    private static final long serialVersionUID = -7357983568966973518L;
 
     @Id
     @Column(name = "id")
@@ -31,7 +31,7 @@ public class SysUser implements Serializable {
 
     private Date gmtModify;
 
-    private Byte status;
+    private Integer status;
 
 
 }
