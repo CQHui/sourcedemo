@@ -1,7 +1,5 @@
 package com.qihui.sourcedemo.util;
 
-import com.qihui.sourcedemo.mybatis.Main;
-
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.RandomAccess;
  * @author chenqihui
  * @date 2019/4/22
  */
-public class ExtArrayList<E> extends AbstractList<E>
+public class ArrayList<E> extends AbstractList<E>
         implements List<E>, RandomAccess, Cloneable, java.io.Serializable {
     private static final long serialVersionUID = 6798341950940775942L;
 
@@ -21,11 +19,11 @@ public class ExtArrayList<E> extends AbstractList<E>
     // ArrayList实际数量
     private int size;
 
-    public ExtArrayList() {
+    public ArrayList() {
         this(10);
     }
 
-    public ExtArrayList(int initialCapacity) {
+    public ArrayList(int initialCapacity) {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
         }
