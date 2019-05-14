@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author chenqihui
  * @date 2019/4/19
  */
-@WebServlet(urlPatterns = "/*")
+@WebServlet(urlPatterns = "/index/*")
 public class ExtDispatcherServlet extends HttpServlet {
 
     // mvc bean key=beanid ,value=对象
